@@ -18,7 +18,7 @@ A simple CRUD application with Users and Tasks management using FastAPI and MySQ
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/yourusername/fastapi-crud.git
+git clone https://github.com/tstazbid/fastapi-crud.git
 cd fastapi-crud
 ```
 
