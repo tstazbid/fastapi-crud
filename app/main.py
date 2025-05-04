@@ -18,8 +18,8 @@ def create_user_task(user_id: int, task: TaskCreate, db: Session = Depends(get_d
     return create_task(db=db, task=task, user_id=user_id)
 
 @app.get("/tasks/", response_model=list[Task])
-def read_tasks(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    tasks = get_tasks(db, skip=skip, limit=limit)
+def read_tasks(db: Session = Depends(get_db)):
+    tasks = get_tasks(db)
     return tasks
 
 @app.put("/tasks/{task_id}", response_model=Task)

@@ -17,8 +17,8 @@ def create_task(db: Session, task, user_id: int):
     db.refresh(db_task)
     return db_task
 
-def get_tasks(db: Session, skip: int = 0, limit: int = 100):
-    return db.query(Task).join(User).offset(skip).limit(limit).all()
+def get_tasks(db: Session):
+    return db.query(Task).join(User).all()
 
 def update_task(db: Session, task_id: int, task):
     db_task = db.query(Task).filter(Task.id == task_id).first()
