@@ -9,6 +9,13 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
+@app.get("/")
+async def root():
+    return {
+        "message": "Welcome to FastAPI CRUD Application",
+        "docs": "Visit /docs for API documentation"
+    }
+
 @app.post("/users/", response_model=User)
 def create_new_user(user: UserCreate, db: Session = Depends(get_db)):
     return create_user(db=db, user=user)
