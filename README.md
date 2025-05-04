@@ -5,8 +5,10 @@ A simple CRUD application with Users and Tasks management using FastAPI and MySQ
 ## Features
 - Create, Read, Update, Delete Users
 - Create, Read, Update, Delete Tasks
-- List all Tasks with User information
-- MySQL Database Integration
+- Automatic task cleanup when deleting users (cascade delete)
+- List all tasks with associated user information
+- MySQL database integration with SQLAlchemy ORM
+- Input validation using Pydantic schemas
 
 ## Prerequisites
 - Python 3.11+ (recommended)
@@ -39,6 +41,9 @@ pip install -r requirements.txt
     ```sql
     CREATE DATABASE fastapi_crud;
     ```
+3. Tables will be automatically created when you run the application
+
+
 ### 5. Configure Environment
 Create .env file in project root:
 
@@ -57,10 +62,13 @@ The API will be available at: http://localhost:8000
 | Method | Endpoint                | Description                  |
 |--------|-------------------------|------------------------------|
 | POST   | `/users/`               | Create new user              |
-| POST   | `/users/{user_id}/tasks/` | Create task for specific user|
+| GET    | `/users/{user_id}`      | Get user details             |
+| PUT    | `/users/{user_id}`      | Update user details          |
+| DELETE | `/users/{user_id}`      | Delete user and their tasks  |
+| POST   | `/users/{user_id}/tasks/` | Create task for user       |
 | GET    | `/tasks/`               | List all tasks with users    |
-| PUT    | `/tasks/{task_id}`      | Update existing task         |
-| DELETE | `/tasks/{task_id}`      | Delete existing task         |
+| PUT    | `/tasks/{task_id}`      | Update task                  |
+| DELETE | `/tasks/{task_id}`      | Delete task                  |
 
 ## Project Structure
 
